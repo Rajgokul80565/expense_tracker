@@ -1,6 +1,6 @@
 
 
-function Balance() {
+function Balance(props:any) {
   return (
     <>
     <h4>Your Balance</h4>
