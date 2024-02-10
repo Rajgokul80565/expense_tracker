@@ -5,8 +5,12 @@ import AppReducer from "./AppReducer";
 type GlobalProps = {
     children:React.ReactNode;
 }
+//check below
+type InitailStateType = {
+    transaction:{}[],
+}
 
-const initialState = {
+const initialState:InitailStateType = {
     transaction:[
   { id: 1, text: 'Flower', amount: -20 },
   { id: 2, text: 'Salary', amount: 300 },
@@ -18,7 +22,7 @@ export const GlobalContext = createContext(initialState);
 
 const GlobalProvider =({children}:GlobalProps) => {
 
-    const [state, dispatch] = useReducer(AppReducer, GlobalContext);
+    const [state, dispatch] = useReducer(AppReducer, initialState);
 
     return (
         <GlobalContext.Provider value={{
