@@ -21,7 +21,7 @@ export const Transaction = (props:TransactionProps) => {
 
     return (
         <li className={props.transaction.amount < 0 ? "minus" : "plus"} key={props?.transaction.id}>
-            Cash <span>{sign}${Math.abs(props.transaction.amount)}</span>
+            {props.transaction.text} <span>{sign}₹{Math.abs(props.transaction.amount)}</span>
             <button onClick={() => deleteTrans(props?.transaction.id)} className="delete-btn">x</button>
         </li> 
     )

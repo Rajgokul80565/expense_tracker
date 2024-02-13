@@ -1,7 +1,20 @@
-type actionProps = {
-    type:string,
-    payload: number ,
+
+
+type addActionProps = {
+    type:"ADD_TRANSACTION",
+    payload:{
+        id: number, 
+        text: string,   
+        amount: number
+    },
 }
+
+type deleteActionProps = {
+    type: "DELETE_TRANSACTION",
+    payload: number,
+}
+
+type actionProps = addActionProps | deleteActionProps;
 
 type stateProps = {
     transactions:{
@@ -18,11 +31,11 @@ export default (state:stateProps, action:actionProps) => {
                     ...state,
                     transactions: state.transactions.filter(trans => trans.id !== action.payload)
                 }
-            // case "ADD_TRANSACTION":
-            //     return {
-            //         ...state,
-            //         transactions:[action.payload, ...state.transactions]
-            //     }    
+            case "ADD_TRANSACTION":
+                return {
+                    ...state,
+                    transactions:[action?.payload,...state.transactions]
+                }    
             default: return state;
         }
 }

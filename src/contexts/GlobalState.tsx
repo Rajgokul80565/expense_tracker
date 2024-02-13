@@ -10,20 +10,22 @@ type GlobalProps = {
 //     transaction:{}[],
 // }
 
-type transactionProps ={
+interface TransactionProps {
     id: number, 
     text: string, 
     amount: number
 }
 
-const initialState = {
-    transactions:[
-  { id: 1, text: 'Flower', amount: -21 },
-  { id: 2, text: 'Salary', amount: 300 },
-  { id: 3, text: 'Book', amount: -10 },
-  { id: 4, text: 'Camera', amount: 150 }
-],
-deleteTrans:(id:number) => {},
+interface InitialState {
+    transactions:TransactionProps[],
+    deleteTrans:(id:number) => void,
+    addTrans:(transaction:TransactionProps) => void,
+}
+
+const initialState:InitialState = {
+    transactions:[],
+    deleteTrans:(id:number) => {},
+    addTrans:(transaction:TransactionProps) => {},
 };
 
 export const GlobalContext = createContext(initialState);
@@ -39,17 +41,18 @@ const GlobalProvider =({children}:GlobalProps) => {
             });
     }
 
-    const addTransaction = (transaction:transactionProps) => {
+    const addTransaction = (transaction:TransactionProps) => {
             dispatch({
             type:"ADD_TRANSACTION", 
             payload: transaction,
-        })
+        });
     }
 
     return (
         <GlobalContext.Provider value={{
             transactions:state.transactions,
             deleteTrans:deleteTransaction,
+            addTrans:addTransaction,
         }}>
         {children}
         </GlobalContext.Provider>

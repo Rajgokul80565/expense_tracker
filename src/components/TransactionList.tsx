@@ -11,7 +11,6 @@ function TransactionList() {
       <h3>History</h3>
       <ul  className="list">
         {transactions.map(trans => <Transaction  transaction={trans}/>)}
-        
       </ul>
     </>
 
