@@ -6,9 +6,6 @@ type GlobalProps = {
     children:React.ReactNode;
 }
 
-// type InitailStateType = {
-//     transaction:{}[],
-// }
 
 interface TransactionProps {
     id: number, 
